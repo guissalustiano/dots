@@ -39,30 +39,28 @@ Plug 'mbbill/undotree'
 Plug 'tpope/vim-dispatch'
 
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
 Plug 'luochen1990/rainbow'
-Plug 'gruvbox-community/gruvbox'
 
-Plug 'colepeters/spacemacs-theme.vim'
-Plug 'sainnhe/gruvbox-material'
-Plug 'phanviet/vim-monokai-pro'
-Plug 'flazz/vim-colorschemes'
-Plug 'chriskempson/base16-vim'
-
+Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
 " theme
-let g:gruvbox_contrast_dark = 'hard'
+let ayucolor="dark"
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 let g:gruvbox_invert_selection='0'
 
-colorscheme gruvbox
-set background=dark
+colorscheme ayu
 
-" I don't know
+" Airlines
+"let g:airline_powerline_fonts = 1
+let g:airline_theme = "base12_spacemacs"
+
+" Detect root dir
 if executable('rg')
   let g:rg_derive_root='true'
 endif
@@ -72,22 +70,27 @@ let mapleader = " "
 " Raibow
 let g:rainbow_active = 1
 
-" Airlines
-"let g:airline_powerline_fonts = 1
-
 " fzf
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 
-" explore bar
+" explore tree
 nnoremap <leader>b :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+let g:netrw_browse_split=2 " remove extra informations
+let g:netrw_banner=0
+let g:netrw_winsize=25
 
 " Windows
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
+
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
 
 " Mov selected
 vnoremap J :m '>+1<CR>gv=gv
@@ -97,7 +100,7 @@ vnoremap K :m '<-2<CR>gv=gv
 vnoremap X "_d
 
 " undotree
-nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 "if has("persistent_undo")
 "  set undodir=$HOME."/.undodir"
 "  set undofile
@@ -128,6 +131,8 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
+" Utils
+nmap <leader>s :w<CR>
+
 " YES
 com! W w
-
