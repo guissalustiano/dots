@@ -38,7 +38,9 @@ Plug 'vim-utils/vim-man'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-dispatch'
 
+Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
+Plug 'luochen1990/rainbow'
 Plug 'gruvbox-community/gruvbox'
 
 Plug 'colepeters/spacemacs-theme.vim'
@@ -66,6 +68,12 @@ if executable('rg')
 endif
 
 let mapleader = " "
+
+" Raibow
+let g:rainbow_active = 1
+
+" Airlines
+"let g:airline_powerline_fonts = 1
 
 " fzf
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
@@ -122,3 +130,4 @@ endfun
 
 " YES
 com! W w
+
