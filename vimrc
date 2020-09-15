@@ -9,7 +9,8 @@ set tabstop=2 softtabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
-set nu
+set number
+set relativenumber
 set nowrap
 set smartcase
 set noswapfile
@@ -31,6 +32,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'OmniSharp/omnisharp-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
@@ -58,12 +60,16 @@ colorscheme ayu
 
 " Airlines
 "let g:airline_powerline_fonts = 1
-let g:airline_theme = "base12_spacemacs"
+"let g:airline_theme = "base12_spacemacs"
 
 " Detect root dir
 if executable('rg')
   let g:rg_derive_root='true'
 endif
+
+" OmniSharp
+"g:OmniSharp_selector_findusages = 'fzf'
+
 
 let mapleader = " "
 
@@ -75,6 +81,11 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
+
+" Prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 " explore tree
 nnoremap <leader>b :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
@@ -111,6 +122,16 @@ nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <Leader>ps :Rg<SPACE>
 
+" Coc
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint', 
+  \ 'coc-prettier', 
+  \ 'coc-json', 
+  \ ]
+
 " GoTo code navigation.
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gy <Plug>(coc-type-definition)
@@ -122,8 +143,14 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
 
+autocmd FileType cs nmap <silent> <buffer> <Leader>rr <Plug>(omnisharp_rename)
+
 " execute files
-autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python' shellescape(@%, 1)<CR>
+autocmd FileType python map <buffer> <leader>t :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python setlocal formatprg=autopep8\ -
+
+autocmd FileType cs map <buffer> <leader>t :w<CR>:exec '!dotnet run'<CR>
+autocmd FileType haskell map <buffer> <leader>t :w<CR>:exec '!ghc -o out' shellescape(@%, 1) '&& ./out'<CR>
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -133,6 +160,7 @@ endfun
 
 " Utils
 nmap <leader>s :w<CR>
+nmap <leader>w <C-^>
 
 " YES
 com! W w
