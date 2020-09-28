@@ -21,3 +21,6 @@
  ## Text Editor
  ### Specs
    - NeoVim
+
+# Referencias:
+ - https://github.com/davidfstein/dots
