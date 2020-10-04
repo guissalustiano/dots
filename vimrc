@@ -1,5 +1,6 @@
 syntax on
 
+set encoding=UTF-8
 set guicursor=
 set relativenumber
 set nohlsearch
@@ -25,6 +26,7 @@ set noshowmode
 set cmdheight=2
 set updatetime=50
 set shortmess+=c
+set mouse=
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -39,28 +41,38 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'vim-utils/vim-man'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-dispatch'
+Plug 'alvan/vim-closetag'
+"Plug 'w0rp/ale'
+Plug 'junegunn/vim-easy-align'
+Plug 'mpickering/hlint-refactor-vim'
 
+Plug 'kristijanhusak/vim-carbon-now-sh'
+Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'luochen1990/rainbow'
 
-Plug 'ayu-theme/ayu-vim'
+" Plug 'ayu-theme/ayu-vim'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 " theme
-let ayucolor="dark"
+" let ayucolor="dark"
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 let g:gruvbox_invert_selection='0'
+let g:gruvbox_contrast_dark = 'hard'
 
-colorscheme ayu
+colorscheme gruvbox
 
 " Airlines
-"let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 "let g:airline_theme = "base12_spacemacs"
+let g:airline#extensions#tmuxline#enabled = 0
 
 " Detect root dir
 if executable('rg')
@@ -86,6 +98,10 @@ nnoremap <Leader>pf :Files<CR>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+" EasyAlign
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " explore tree
 nnoremap <leader>b :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
@@ -117,6 +133,12 @@ nnoremap <leader>u :UndotreeToggle<CR>
 "  set undofile
 "endif
 
+" Snipped
+imap <C-l> <Plug>(coc-snippets-expand)
+vmap <C-j> <Plug>(coc-snippets-select)
+let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_prev = '<c-k>'
+
 " Rename functions
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
@@ -143,6 +165,11 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
 
+nmap <leader> k :call <SID>show_documentation()
+
+" Carbon.sh
+vnoremap <leader><F5> :CarbonNowSh<CR>
+
 autocmd FileType cs nmap <silent> <buffer> <Leader>rr <Plug>(omnisharp_rename)
 
 " execute files
@@ -151,6 +178,7 @@ autocmd FileType python setlocal formatprg=autopep8\ -
 
 autocmd FileType cs map <buffer> <leader>t :w<CR>:exec '!dotnet run'<CR>
 autocmd FileType haskell map <buffer> <leader>t :w<CR>:exec '!ghc -o out' shellescape(@%, 1) '&& ./out'<CR>
+autocmd FileType vhdl map <buffer> <leader>t :w<CR>:exec '!ghdl -a ' shellescape(@%, 1)<CR>
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
