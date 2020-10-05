@@ -4,8 +4,12 @@
 ### Specs
  - zsh
  - oh- my-zsh
- - [powerlevel10k](https://github.com/romkatv/powerlevel10k#zinit)
- - [zshrc](https:///guissalustiano/localConfigs/master/zshrc)
+ - zinit
+   - zdharma/fast-syntax-highlighting
+   - zsh-users/zsh-autosuggestions
+   - zsh-users/zsh-completions
+   - [powerlevel10k](https://github.com/romkatv/powerlevel10k#zinit)
+ - [alias](https:///guissalustiano/localConfigs/master/zshrc)
 
 ## Terminal
 ### Specs
