@@ -14,7 +14,6 @@
 ## Terminal
 ### Specs
   - Kity
-  - FiraCode
   - Kitty config
   
 ## Windows Maneger
