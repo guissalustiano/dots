@@ -33,8 +33,13 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'OmniSharp/omnisharp-vim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'tjdevries/nlua.nvim'
+Plug 'tjdevries/lsp_extensions.nvim'
+Plug 'nvim-lua/completion-nvim'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
@@ -45,29 +50,28 @@ Plug 'alvan/vim-closetag'
 "Plug 'w0rp/ale'
 Plug 'junegunn/vim-easy-align'
 Plug 'mpickering/hlint-refactor-vim'
+Plug 'junegunn/vim-emoji'
+Plug 'airblade/vim-gitgutter'
 
 Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'luochen1990/rainbow'
 
-" Plug 'ayu-theme/ayu-vim'
-Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " theme
-" let ayucolor="dark"
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
-let g:gruvbox_invert_selection='0'
-let g:gruvbox_contrast_dark = 'hard'
 
-colorscheme gruvbox
+let ayucolor="dark"
+colorscheme ayu
 
 " Airlines
 let g:airline_powerline_fonts = 1
@@ -78,6 +82,8 @@ let g:airline#extensions#tmuxline#enabled = 0
 if executable('rg')
   let g:rg_derive_root='true'
 endif
+
+set completefunc=emoji#complete
 
 " OmniSharp
 "g:OmniSharp_selector_findusages = 'fzf'
@@ -100,8 +106,8 @@ vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 " EasyAlign
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
+xmap <leader>a <Plug>(EasyAlign)
+nmap <leader>a <Plug>(EasyAlign)
 
 " explore tree
 nnoremap <leader>b :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
@@ -133,52 +139,40 @@ nnoremap <leader>u :UndotreeToggle<CR>
 "  set undofile
 "endif
 
+"lsp
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+" lua call nvim_lsp#setup("pyls", {})
+
+nnoremap <leader>d :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>i :lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>sh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>rr :lua vim.lsp.buf.references()<CR>
+nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>h :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>f :lua vim.lsp.buf.formatting()<CR>
+nnoremap <leader>e :lua vim.lsp.util.show_line_diagnostics()<CR>
+
 " Snipped
-imap <C-l> <Plug>(coc-snippets-expand)
-vmap <C-j> <Plug>(coc-snippets-select)
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-k>'
 
 " Rename functions
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <Leader>ps :Rg<SPACE>
 
-" Coc
-let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint', 
-  \ 'coc-prettier', 
-  \ 'coc-json', 
-  \ ]
-
 " GoTo code navigation.
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
-nmap <leader>rr <Plug>(coc-rename)
-nmap <leader>g[ <Plug>(coc-diagnostic-prev)
-nmap <leader>g] <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
-nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
-
 nmap <leader> k :call <SID>show_documentation()
 
 " Carbon.sh
 vnoremap <leader><F5> :CarbonNowSh<CR>
 
-autocmd FileType cs nmap <silent> <buffer> <Leader>rr <Plug>(omnisharp_rename)
-
 " execute files
-autocmd FileType python map <buffer> <leader>t :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python setlocal formatprg=autopep8\ -
+autocmd FileType python  map <buffer> <leader>tr :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType cs      map <buffer> <leader>tr :w<CR>:exec '!dotnet run'<CR>
+autocmd FileType haskell map <buffer> <leader>tr :w<CR>:exec '!ghc -o out' shellescape(@%, 1) '&& ./out'<CR>
+autocmd FileType vhdl    map <buffer> <leader>tr :w<CR>:exec '!ghdl -a ' shellescape(@%, 1)<CR>
 
-autocmd FileType cs map <buffer> <leader>t :w<CR>:exec '!dotnet run'<CR>
-autocmd FileType haskell map <buffer> <leader>t :w<CR>:exec '!ghc -o out' shellescape(@%, 1) '&& ./out'<CR>
-autocmd FileType vhdl map <buffer> <leader>t :w<CR>:exec '!ghdl -a ' shellescape(@%, 1)<CR>
+autocmd FileType dart    map <buffer> <leader>tt :w<CR>:exec '!flutter test' shellescape(@%, 1)<CR>
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -192,3 +186,32 @@ nmap <leader>w <C-^>
 
 " YES
 com! W w
+
+lua <<EOF
+local nvim_lsp = require'nvim_lsp'
+local configs = require'nvim_lsp/configs'
+configs.hdl_checker = {
+  default_config = {
+    cmd = {'hdl_checker', '--lsp'};
+    filetypes = {'vhd', 'vhdl'};
+    root_dir = function(fname)
+      return nvim_lsp.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+    end;
+    settings = {};
+  };
+}
+nvim_lsp.hdl_checker.setup{}
+
+EOF
+
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+set completeopt=menuone,noinsert,noselect
+
+lua require'nvim_lsp'.clangd.setup{ on_attach=require'completion'.on_attach }
+lua require'nvim_lsp'.dartls.setup{ on_attach=require'completion'.on_attach }
+lua require'nvim_lsp'.hls.setup{ on_attach=require'completion'.on_attach }
+lua require'nvim_lsp'.jedi_language_server.setup{ on_attach=require'completion'.on_attach }
+lua require'nvim_lsp'.tsserver.setup{ on_attach=require'completion'.on_attach }
+lua require'nvim_lsp'.cssls.setup{ on_attach=require'completion'.on_attach, filetypes={'css','typescript'}}
+lua require'nvim_lsp'.html.setup{ on_attach=require'completion'.on_attach, filetypes={'html','typescriptreact'}}
+lua require'nvim_lsp'.dockerls.setup{ on_attach=require'completion'.on_attach }
