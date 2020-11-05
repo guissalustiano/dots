@@ -1,29 +1,38 @@
 # Meu Arch
 
 ## Linux Shell
-### Specs
- - zsh
- - oh- my-zsh
- - zinit
-   - zdharma/fast-syntax-highlighting
-   - zsh-users/zsh-autosuggestions
-   - zsh-users/zsh-completions
-   - [powerlevel10k](https://github.com/romkatv/powerlevel10k#zinit)
- - [alias](https:///guissalustiano/localConfigs/master/zshrc)
+  - zsh
+  - oh- my-zsh
+  - zinit
+    - zdharma/fast-syntax-highlighting
+    - zsh-users/zsh-autosuggestions
+    - zsh-users/zsh-completions
+    - [powerlevel10k](https://github.com/romkatv/powerlevel10k#zinit)
+  - many alias
+  - Packge manager: [Aura](https://github.com/fosskers/aura)
 
 ## Terminal
-### Specs
   - Kity
   - Kitty config
-  
-## Windows Maneger
-### Specs
- - i3-gaps
- - [i3wm-themer](https://github.com/unix121/i3wm-themer)
- 
- ## Text Editor
- ### Specs
-   - NeoVim
+  - Theme: [ayu](https://github.com/dexpota/kitty-themes/blob/master/themes/ayu.conf)
+  - Font: [Meslo NF](https://aur.archlinux.org/packages/ttf-meslo-nerd-font-powerlevel10k/)
+
+## Text Editor
+  - [NeoVim Nightly](https://aur.archlinux.org/packages/neovim-nightly/)
+
+## Browser
+  - Firefox Developer Edition
+    - Vimium
+    - DarkRead
+    - Notion
+    - AdBlock Ultimade
+    - Bitwarden
+    - Google Translate
+    - Video Speed Controller
+    - Absolute Enable Right Click & Copy
+
+# Link Legais:
+  - https://zaiste.net/posts/shell-commands-rust/
 
 # Referencias:
  - https://github.com/davidfstein/dots
