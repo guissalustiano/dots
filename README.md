@@ -33,10 +33,11 @@
 
 # Um dia quem sabe
   - https://github.com/ranger/ranger
+  - https://github.com/dunst-project/dunst
 
 # Link Legais:
   - https://zaiste.net/posts/shell-commands-rust/
 
 # Referencias:
  - https://github.com/davidfstein/dots
- - https://github.com/dunst-project/dunst
+ - https://github.com/Eloysheyin/Minimalist-Dots/
