@@ -31,6 +31,9 @@
     - Video Speed Controller
     - Absolute Enable Right Click & Copy
 
+# Um dia quem sabe
+  - https://github.com/ranger/ranger
+
 # Link Legais:
   - https://zaiste.net/posts/shell-commands-rust/
 
