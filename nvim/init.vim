@@ -132,6 +132,9 @@ vnoremap K :m '<-2<CR>gv=gv
 " Delete selected
 vnoremap X "_d
 
+" git
+nmap <leader>gd <Plug>(GitGutterPreviewHunk)
+
 " undotree
 nnoremap <leader>u :UndotreeToggle<CR>
 "if has("persistent_undo")
@@ -200,7 +203,7 @@ configs.hdl_checker = {
     settings = {};
   };
 }
-nvim_lsp.hdl_checker.setup{}
+nvim_lsp.hdl_checker.setup{ on_attach=require'completion'.on_attach }
 
 EOF
 
@@ -215,3 +218,4 @@ lua require'nvim_lsp'.tsserver.setup{ on_attach=require'completion'.on_attach }
 lua require'nvim_lsp'.cssls.setup{ on_attach=require'completion'.on_attach, filetypes={'css','typescript'}}
 lua require'nvim_lsp'.html.setup{ on_attach=require'completion'.on_attach, filetypes={'html','typescriptreact'}}
 lua require'nvim_lsp'.dockerls.setup{ on_attach=require'completion'.on_attach }
+lua require'nvim_lsp'.omnisharp.setup{ on_attach=require'completion'.on_attach }
