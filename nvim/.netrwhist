@@ -1,6 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
-let g:netrw_dirhist_4='/home/guiss/.config/spotify-tui'
-let g:netrw_dirhist_3='/home/guiss/Projetos/try-dotnet/myWebApp/Pages'
-let g:netrw_dirhist_2='/home/guiss/Projetos/try-dotnet/myWebApp'
-let g:netrw_dirhist_1='/home/guiss/Games'
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/guiss/Projetos/IC-brenchmark-haskell/cursoHaskell/20_qs_paradigmas_ouvintes_l6-guissalustiano/src'
+let g:netrw_dirhist_6='/home/guiss/Projetos/IC-brenchmark-haskell/cursoHaskell/20_qs_paradigmas_ouvintes_l6-guissalustiano'
+let g:netrw_dirhist_5='/home/guiss/Downloads'
+let g:netrw_dirhist_4='/home/guiss/Projetos/polistack/projetos'
+let g:netrw_dirhist_3='/home/guiss/Projetos/polistack/projetos/cosmebarbosa.gabriel'
+let g:netrw_dirhist_2='/tmp/davinci-resolve-beta-1642323711177159276/davinci-resolve-beta'
+let g:netrw_dirhist_1='/home/guiss/Projetos/IC-brenchmark-haskell/cursoHaskell/20-qs-paradigmas-ouvintes-l4-guissalustiano'
+let g:netrw_dirhist_0='/home/guiss/Projetos/IC-brenchmark-haskell/cursoHaskell/20-qs-paradigmas-ouvintes-l4-guissalustiano/src'
+let g:netrw_dirhist_9='/home/guiss/Projetos/IC-brenchmark-haskell/cursoHaskell/20-qs-paradigmas-ouvintes-l4-guissalustiano'
+let g:netrw_dirhist_8='/home/guiss/Projetos/poli-comp-eps/Algoritimos/ep5'

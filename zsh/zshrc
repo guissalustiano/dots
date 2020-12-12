@@ -6,6 +6,7 @@ export PATH=$HOME/.yarn/bin:$PATH
 export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
 export PATH=$HOME/.pub-cache/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.stack/global-project/stack.yaml:$PATH
 
 export ZSH="/home/guiss/.oh-my-zsh"
 
@@ -34,13 +35,13 @@ alias vi='nvim'
 
 alias ls="colorls"
 alias ps="procs"
-alias htop="btm"
+#alias htop="btm"
 alias grep="rg"
 alias sed="sd"
 alias find="fd"
 
 alias icat="kitty +kitten icat"
-alias clip="kitty +kitten clipboard"
+alias iclip="kitty +kitten clipboard"
 
 alias audio="sudo alsamixer"
 alias baterry="upower -d"

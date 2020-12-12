@@ -38,6 +38,7 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'tjdevries/nlua.nvim'
 Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'nvim-lua/completion-nvim'
+Plug 'mpickering/hlint-refactor-vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -50,8 +51,9 @@ Plug 'alvan/vim-closetag'
 "Plug 'w0rp/ale'
 Plug 'junegunn/vim-easy-align'
 Plug 'mpickering/hlint-refactor-vim'
-Plug 'junegunn/vim-emoji'
 Plug 'airblade/vim-gitgutter'
+"Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'ryanoasis/vim-devicons'
@@ -84,10 +86,6 @@ if executable('rg')
 endif
 
 set completefunc=emoji#complete
-
-" OmniSharp
-"g:OmniSharp_selector_findusages = 'fzf'
-
 
 let mapleader = " "
 
@@ -157,11 +155,14 @@ nnoremap <leader>f :lua vim.lsp.buf.formatting()<CR>
 nnoremap <leader>e :lua vim.lsp.util.show_line_diagnostics()<CR>
 
 " Snipped
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-N>"
 
 " Rename functions
-nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
-nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <leader>ps :Rg<SPACE>
+nnoremap <leader>s  :%s/\<<C-r><C-w>\>/
 
 " GoTo code navigation.
 nmap <leader> k :call <SID>show_documentation()
@@ -184,7 +185,7 @@ fun! TrimWhitespace()
 endfun
 
 " Utils
-nmap <leader>s :w<CR>
+nmap <C-s> :w<CR>
 nmap <leader>w <C-^>
 
 " YES
@@ -193,9 +194,9 @@ com! W w
 lua <<EOF
 local nvim_lsp = require'nvim_lsp'
 local configs = require'nvim_lsp/configs'
-configs.hdl_checker = {
+configs.vhdl = {
   default_config = {
-    cmd = {'hdl_checker', '--lsp'};
+    cmd = {'/home/guiss/executable/rust_hdl/target/release/vhdl_ls'};
     filetypes = {'vhd', 'vhdl'};
     root_dir = function(fname)
       return nvim_lsp.util.find_git_ancestor(fname) or vim.loop.os_homedir()
@@ -203,8 +204,6 @@ configs.hdl_checker = {
     settings = {};
   };
 }
-nvim_lsp.hdl_checker.setup{ on_attach=require'completion'.on_attach }
-
 EOF
 
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
@@ -219,3 +218,4 @@ lua require'nvim_lsp'.cssls.setup{ on_attach=require'completion'.on_attach, file
 lua require'nvim_lsp'.html.setup{ on_attach=require'completion'.on_attach, filetypes={'html','typescriptreact'}}
 lua require'nvim_lsp'.dockerls.setup{ on_attach=require'completion'.on_attach }
 lua require'nvim_lsp'.omnisharp.setup{ on_attach=require'completion'.on_attach }
+lua require'nvim_lsp'.vhdl.setup{ on_attach=require'completion'.on_attach }
