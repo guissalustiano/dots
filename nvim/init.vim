@@ -41,6 +41,7 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'mpickering/hlint-refactor-vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
+Plug 'chrisbra/Colorizer'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
@@ -149,7 +150,7 @@ nnoremap <leader>i :lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>sh :lua vim.lsp.buf.signature_help()<CR>
 nnoremap <leader>rr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
-nnoremap <leader>h :lua vim.lsp.buf.hover()<CR>
+"nnoremap <leader>h :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>f :lua vim.lsp.buf.formatting()<CR>
 nnoremap <leader>e :lua vim.lsp.util.show_line_diagnostics()<CR>
@@ -192,14 +193,14 @@ nmap <leader>w <C-^>
 com! W w
 
 lua <<EOF
-local nvim_lsp = require'nvim_lsp'
-local configs = require'nvim_lsp/configs'
+local lspconfig = require'nvim_lsp'
+local configs = require'lspconfig/configs'
 configs.vhdl = {
   default_config = {
     cmd = {'/home/guiss/executable/rust_hdl/target/release/vhdl_ls'};
     filetypes = {'vhd', 'vhdl'};
     root_dir = function(fname)
-      return nvim_lsp.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+      return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
     end;
     settings = {};
   };
@@ -209,13 +210,13 @@ EOF
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 set completeopt=menuone,noinsert,noselect
 
-lua require'nvim_lsp'.clangd.setup{ on_attach=require'completion'.on_attach }
-lua require'nvim_lsp'.dartls.setup{ on_attach=require'completion'.on_attach }
-lua require'nvim_lsp'.hls.setup{ on_attach=require'completion'.on_attach }
-lua require'nvim_lsp'.jedi_language_server.setup{ on_attach=require'completion'.on_attach }
-lua require'nvim_lsp'.tsserver.setup{ on_attach=require'completion'.on_attach }
-lua require'nvim_lsp'.cssls.setup{ on_attach=require'completion'.on_attach, filetypes={'css','typescript'}}
-lua require'nvim_lsp'.html.setup{ on_attach=require'completion'.on_attach, filetypes={'html','typescriptreact'}}
-lua require'nvim_lsp'.dockerls.setup{ on_attach=require'completion'.on_attach }
-lua require'nvim_lsp'.omnisharp.setup{ on_attach=require'completion'.on_attach }
-lua require'nvim_lsp'.vhdl.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.dartls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.hls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.jedi_language_server.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.cssls.setup{ on_attach=require'completion'.on_attach, filetypes={'css','typescript'}}
+lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach, filetypes={'html','typescriptreact'}}
+lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.omnisharp.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.vhdl.setup{ on_attach=require'completion'.on_attach }
