@@ -245,9 +245,9 @@ mode "$mode_gaps_outer" {
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Set background
-exec --no-startup-id feh --bg-fill Pictures/walpaper.jpg &
+exec --no-startup-id feh --bg-fill /usr/share/backgrounds/gradient.jpg &
 
-exec --no-startup-id picom --corner-radius 5 -b
+exec --no-startup-id picom -b
 
 exec --no-startup-id flameshot
 bindsym Print        exec --no-startup-id flameshot gui

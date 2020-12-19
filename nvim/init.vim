@@ -153,7 +153,7 @@ nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
 "nnoremap <leader>h :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>f :lua vim.lsp.buf.formatting()<CR>
-nnoremap <leader>e :lua vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <leader>e :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 
 " Snipped
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -193,7 +193,7 @@ nmap <leader>w <C-^>
 com! W w
 
 lua <<EOF
-local lspconfig = require'nvim_lsp'
+local lspconfig = require'lspconfig'
 local configs = require'lspconfig/configs'
 configs.vhdl = {
   default_config = {
@@ -210,7 +210,7 @@ EOF
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 set completeopt=menuone,noinsert,noselect
 
-lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.ccls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.dartls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.hls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.jedi_language_server.setup{ on_attach=require'completion'.on_attach }

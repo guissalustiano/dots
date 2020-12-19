@@ -37,7 +37,7 @@ alias ls="exa"
 alias ps="procs"
 #alias htop="btm"
 alias grep="rg"
-alias sed="sd"
+# alias sed="sd"
 alias find="fd"
 
 alias icat="kitty +kitten icat"
@@ -49,6 +49,9 @@ alias baterry="upower -d"
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit"
+alias gd="git diff"
+
+alias open="xdg-open"
 
 
 ### Added by Zinit's installer
