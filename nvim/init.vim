@@ -1,7 +1,6 @@
 syntax on
 
 set encoding=UTF-8
-set guicursor=
 set relativenumber
 set nohlsearch
 set hidden
@@ -33,36 +32,37 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
 
+
+" Neovim lsp Plugin
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
-Plug 'tjdevries/nlua.nvim'
 Plug 'tjdevries/lsp_extensions.nvim'
+Plug 'tjdevries/nlua.nvim'
 Plug 'nvim-lua/completion-nvim'
+
 Plug 'mpickering/hlint-refactor-vim'
+Plug 'rust-lang/rust.vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
-Plug 'chrisbra/Colorizer'
+Plug 'mbbill/undotree'
+
+Plug 'chrisbra/Colorizer' " Color hexcode
+Plug 'alvan/vim-closetag'
+Plug 'luochen1990/rainbow' " Color () {} []
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
+
 Plug 'vim-utils/vim-man'
-Plug 'mbbill/undotree'
+
 Plug 'tpope/vim-dispatch'
-Plug 'alvan/vim-closetag'
-"Plug 'w0rp/ale'
 Plug 'junegunn/vim-easy-align'
-Plug 'mpickering/hlint-refactor-vim'
-Plug 'airblade/vim-gitgutter'
-"Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'airblade/vim-gitgutter'
 
 Plug 'kristijanhusak/vim-carbon-now-sh'
-Plug 'ryanoasis/vim-devicons'
-Plug 'vim-airline/vim-airline'
-Plug 'edkolev/tmuxline.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'luochen1990/rainbow'
 
+Plug 'vim-airline/vim-airline'
+Plug 'sheerun/vim-polyglot'
 Plug 'ayu-theme/ayu-vim'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
@@ -86,27 +86,33 @@ if executable('rg')
   let g:rg_derive_root='true'
 endif
 
-set completefunc=emoji#complete
-
-let mapleader = " "
-
 " Raibow
 let g:rainbow_active = 1
-
+"
 " fzf
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 
-" Prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" Maps
+let mapleader = " "
 
 " EasyAlign
 xmap <leader>a <Plug>(EasyAlign)
 nmap <leader>a <Plug>(EasyAlign)
+
+" Carbon.sh
+vnoremap <leader><F5> :CarbonNowSh<CR>
+
+" git
+nmap <leader>gd <Plug>(GitGutterPreviewHunk)
+
+"awensome
+vnoremap <leader>p "_dP
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y gg"+yG
 
 " explore tree
 nnoremap <leader>b :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
@@ -128,57 +134,6 @@ nnoremap <leader>l :wincmd l<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" Delete selected
-vnoremap X "_d
-
-" git
-nmap <leader>gd <Plug>(GitGutterPreviewHunk)
-
-" undotree
-nnoremap <leader>u :UndotreeToggle<CR>
-"if has("persistent_undo")
-"  set undodir=$HOME."/.undodir"
-"  set undofile
-"endif
-
-"lsp
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-" lua call nvim_lsp#setup("pyls", {})
-
-nnoremap <leader>d :lua vim.lsp.buf.definition()<CR>
-nnoremap <leader>i :lua vim.lsp.buf.implementation()<CR>
-nnoremap <leader>sh :lua vim.lsp.buf.signature_help()<CR>
-nnoremap <leader>rr :lua vim.lsp.buf.references()<CR>
-nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
-"nnoremap <leader>h :lua vim.lsp.buf.hover()<CR>
-nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
-nnoremap <leader>f :lua vim.lsp.buf.formatting()<CR>
-nnoremap <leader>e :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-
-" Snipped
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-n>"
-let g:UltiSnipsJumpBackwardTrigger="<c-N>"
-
-" Rename functions
-nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>ps :Rg<SPACE>
-nnoremap <leader>s  :%s/\<<C-r><C-w>\>/
-
-" GoTo code navigation.
-nmap <leader> k :call <SID>show_documentation()
-
-" Carbon.sh
-vnoremap <leader><F5> :CarbonNowSh<CR>
-
-" execute files
-autocmd FileType python  map <buffer> <leader>tr :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType cs      map <buffer> <leader>tr :w<CR>:exec '!dotnet run'<CR>
-autocmd FileType haskell map <buffer> <leader>tr :w<CR>:exec '!ghc -o out' shellescape(@%, 1) '&& ./out'<CR>
-autocmd FileType vhdl    map <buffer> <leader>tr :w<CR>:exec '!ghdl -a ' shellescape(@%, 1)<CR>
-
-autocmd FileType dart    map <buffer> <leader>tt :w<CR>:exec '!flutter test' shellescape(@%, 1)<CR>
-
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
@@ -192,31 +147,40 @@ nmap <leader>w <C-^>
 " YES
 com! W w
 
-lua <<EOF
-local lspconfig = require'lspconfig'
-local configs = require'lspconfig/configs'
-configs.vhdl = {
-  default_config = {
-    cmd = {'/home/guiss/executable/rust_hdl/target/release/vhdl_ls'};
-    filetypes = {'vhd', 'vhdl'};
-    root_dir = function(fname)
-      return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
-    end;
-    settings = {};
-  };
-}
-EOF
+" undotree
+nnoremap <leader>u :UndotreeToggle<CR>
+"if has("persistent_undo")
+"  set undodir=$HOME."/.undodir"
+"  set undofile
+"endif
+
+" Rename functions
+nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>ps :Rg<SPACE>
+nnoremap <leader>s  :%s/\<<C-r><C-w>\>/
+
+nnoremap <leader>d :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>i :lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>sh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>rr :lua vim.lsp.buf.references()<CR>
+nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
+"nnoremap <leader>h :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>f :lua vim.lsp.buf.formatting()<CR>
+nnoremap <leader>e :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <leader>rs :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>
 
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 set completeopt=menuone,noinsert,noselect
 
+" opt/omnisharp-roslyn/OmniSharp.exe
 lua require'lspconfig'.ccls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.dartls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.hls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.jedi_language_server.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.cssls.setup{ on_attach=require'completion'.on_attach, filetypes={'css','typescript'}}
-lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach, filetypes={'html','typescriptreact'}}
 lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.omnisharp.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.vhdl.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.hls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.omnisharp.setup{ cmd={'/usr/share/omnisharp/omnisharp/OmniSharp.exe', "--languageserver" , "--hostPID", tostring(vim.fn.getpid()) }, on_attach=require'completion'.on_attach }
+lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.terraformls.setup{ cmd = { "terraform-lsp", "serve" }, on_attach=require'completion'.on_attach }
+lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.kotlin_language_server.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }

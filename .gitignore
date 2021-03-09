@@ -7,3 +7,35 @@ kglobalshortcutsrc
 mimeapps.list
 gh
 spotifyd/"cache_directory"/
+Code - OSS/
+QtProject.conf
+baloofileinformationrc
+configstore/
+deluge/
+dolphinrc
+exercism/
+kconf_updaterc
+kde.org/
+kdeglobals
+launcher-main/
+nextjs-nodejs/
+obs-studio/
+session/
+systemd/
+thefuck/
+torbrowser/
+unity3d/
+vlc/
+Code/
+GIMP/
+Insomnia Designer/
+Insomnia/
+JetBrains/
+Xavion/
+dlv/
+google-chrome/
+gtk-2.0/
+kwalletrc
+tabtab/
+user-dirs.dirs
+user-dirs.locale
