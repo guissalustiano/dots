@@ -15,9 +15,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'sbdchd/neoformat'
 
   " Smart Colorize
-  Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'chrisbra/Colorizer' " Color hexcode
-  Plug 'luochen1990/rainbow' " Color () {} []
+  Plug 'p00f/nvim-ts-rainbow' " Color () {} []
 
   " Runners
   Plug 'tpope/vim-dispatch'
