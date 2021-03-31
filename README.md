@@ -17,6 +17,9 @@
   - Theme: [ayu](https://github.com/dexpota/kitty-themes/blob/master/themes/ayu.conf)
   - Font: [Meslo NF](https://aur.archlinux.org/packages/ttf-meslo-nerd-font-powerlevel10k/)
 
+# Usefull cli program
+  - [Many in rust](https://zaiste.net/posts/shell-commands-rust/)
+
 ## Text Editor
   - [NeoVim Nightly](https://aur.archlinux.org/packages/neovim-nightly/)
 
