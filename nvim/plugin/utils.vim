@@ -3,8 +3,9 @@ vnoremap <leader>p "_dP
 nnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
 nmap <C-s> :w<CR>
-"" Ctrl+^ don't work to me
-nmap <leader>w <C-^>
+
+"Opent terminal
+nmap <leader>t <cmd>term<CR>i
 
 " Mov selected
 vnoremap J :m '>+1<CR>gv=gv

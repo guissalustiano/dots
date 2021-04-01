@@ -1,8 +1,12 @@
-" explore tree
+" EXplore tree
 nnoremap <leader>b :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 let g:netrw_browse_split=2 " remove extra informations
 let g:netrw_banner=0
 let g:netrw_winsize=25
+
+"" Ctrl+^ don't work to me
+nnoremap <leader>w <C-^>
+
 
 " Windows
 nnoremap <Leader>+ :vertical resize +5<CR>
