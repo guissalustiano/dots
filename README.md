@@ -1,5 +1,10 @@
 # Meu Arch
-
+## Network packages
+  - netctl
+  - dialog
+  - dhcpd
+  - wpa_supplicant
+  - ifplugd
 ## Linux Shell
   - zsh
   - oh- my-zsh
