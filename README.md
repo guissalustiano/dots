@@ -1,5 +1,14 @@
 # Meu Arch
-
+## Network packages
+  - netctl
+  - dialog
+  - dhcpd
+  - wpa_supplicant
+  - ifplugd
+## Audio
+  - alsa-utils
+  - pulseaudio
+  - pulseaudio-alsa
 ## Linux Shell
   - zsh
   - oh- my-zsh
