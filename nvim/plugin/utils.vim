@@ -1,11 +1,12 @@
 " usefull remaps
 vnoremap <leader>p "_dP
-nnoremap <leader>y "+y
+noremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
-nmap <C-s> :w<CR>
+nnoremap <C-s> :w<CR>
 
 "Opent terminal
 nmap <leader>t <cmd>term<CR>i
+tnoremap <Esc> <C-\><C-n>
 
 " Mov selected
 vnoremap J :m '>+1<CR>gv=gv

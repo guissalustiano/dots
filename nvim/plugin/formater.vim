@@ -7,5 +7,5 @@ endfun
 augroup fmt
   autocmd!
   autocmd BufWritePre * :call TrimWhitespace()
-  autocmd BufWritePre * undojoin | Neoformat
+  " autocmd BufWritePre * undojoin | Neoformat
 augroup END

@@ -12,7 +12,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'puremourning/vimspector'
 
   " Formatter/Prettier
-  Plug 'sbdchd/neoformat'
+  " Plug 'sbdchd/neoformat'
 
   " Smart Colorize
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -40,6 +40,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kristijanhusak/vim-carbon-now-sh'
 
   " Aesthetics
+  Plug 'sheerun/vim-polyglot'
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'ayu-theme/ayu-vim'
   Plug 'vim-airline/vim-airline'

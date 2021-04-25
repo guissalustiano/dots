@@ -12,12 +12,36 @@ nnoremap <leader>rs :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>
 set completeopt=menuone,noinsert,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
-lua require'lspconfig'.ccls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.hls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.terraformls.setup{ cmd = { "terraform-lsp", "serve" }, on_attach=require'completion'.on_attach }
-lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.kotlin_language_server.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
+lua << EOF
+local lspconfig = require'lspconfig'
+local configs = require'lspconfig/configs'
+local attach = require'completion'.on_attach
+local util = require "lspconfig/util"
+
+lspconfig.util.default_config = vim.tbl_extend(
+  "force",
+  lspconfig.util.default_config,
+  { on_attach=attach }
+)
+
+-- Na proxima versão vai vir incluso
+configs.tflint = {
+  default_config = {
+    cmd = {"tflint", "--langserver"},
+    filetypes = {"terraform"},
+    root_dir = util.root_pattern(".terraform", ".git", ".tflint.hcl")
+  },
+}
+
+lspconfig.ccls.setup{}
+lspconfig.dockerls.setup{}
+lspconfig.hls.setup{}
+lspconfig.pyls.setup{}
+lspconfig.rust_analyzer.setup{}
+lspconfig.tsserver.setup{}
+lspconfig.kotlin_language_server.setup{}
+lspconfig.gopls.setup{}
+lspconfig.tflint.setup{}
+lspconfig.julials.setup{}
+
+EOF

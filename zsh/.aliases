@@ -1,6 +1,7 @@
 alias aura="sudo aura"
 
 alias vi='nvim'
+alias svi='sudo nvim'
 
 alias ls="exa"
 alias ps="procs"
@@ -14,7 +15,7 @@ alias iclip="kitty +kitten clipboard"
 
 # alias baterry="upower -d"
 
-alias gs="git status"
+alias gst="git status"
 alias ga="git add"
 alias gcm="git commit"
 alias gck="git checkout"
@@ -24,4 +25,4 @@ alias gpl="git pull"
 alias gps="git push"
 
 # alias t="trans"
-# eval $(thefuck --alias)
+eval $(thefuck --alias)

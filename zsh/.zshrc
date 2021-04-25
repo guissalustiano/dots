@@ -4,6 +4,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# rust autocomplete function
+fpath+=~/.zfunc
+
+export EDITOR='nvim'
+
 # oh-my-zsh installation.
 export ZSH="/home/guiss/.oh-my-zsh"
 
@@ -39,7 +44,17 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Path
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.yarn/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
+export PATH=$HOME/.pub-cache/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.stack/global-project/stack.yaml:$PATH
+export PATH=$HOME/.dotnet/tools:$PATH
 
 # alias
 source $HOME/.aliases
 
+source /usr/share/nvm/init-nvm.sh
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
