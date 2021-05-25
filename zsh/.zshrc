@@ -58,3 +58,8 @@ source /usr/share/nvm/init-nvm.sh
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
+
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+compinit
+complete -C '/bin/aws_completer' aws

@@ -55,6 +55,7 @@ lspconfig.kotlin_language_server.setup{}
 lspconfig.gopls.setup{}
 lspconfig.tflint.setup{}
 lspconfig.julials.setup{}
+lspconfig.texlab.setup{}
 lspconfig.ghdl.setup{}
 
 EOF
