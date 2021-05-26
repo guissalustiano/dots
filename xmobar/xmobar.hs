@@ -14,6 +14,7 @@ Config {
     persistent = True,
     lowerOnStart = True,
     hideOnStart = False,
+    allDesktops = True,
     commands = [
         Run MultiCpu ["-t","Cpu: <total0>% ","-L","30","-H","60","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC","-w","3"] 10,
         Run Memory ["-t","Mem: <usedratio>%","-H","8192","-L","4096","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 10,

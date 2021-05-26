@@ -384,7 +384,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
--- myStartupHook = return ()
+myStartupHook = return ()
 
 
 ------------------------------------------------------------------------
@@ -415,19 +415,21 @@ main = do
 defaults = defaultConfig {
     -- simple stuff
     terminal           = myTerminal,
-    -- focusFollowsMouse  = myFocusFollowsMouse,
-    -- borderWidth        = myBorderWidth,
+    focusFollowsMouse  = myFocusFollowsMouse,
+    borderWidth        = myBorderWidth,
     modMask            = myModMask,
-    workspaces         = myWorkspaces
-    -- normalBorderColor  = myNormalBorderColor,
-    -- focusedBorderColor = myFocusedBorderColor,
+    workspaces         = myWorkspaces,
+    normalBorderColor  = myNormalBorderColor,
+    focusedBorderColor = myFocusedBorderColor,
 
     -- key bindings
-    -- keys               = myKeys,
-    -- mouseBindings      = myMouseBindings,
+     keys               = myKeys,
+     mouseBindings      = myMouseBindings,
 
     -- hooks, layouts
-    -- layoutHook         = smartBorders $ myLayout,
+    layoutHook         = smartBorders $ myLayout,
+    -- thanks https://unix.stackexchange.com/questions/288037/xmobar-does-not-appear-on-top-of-window-stack-when-xmonad-starts
+    handleEventHook    = handleEventHook defaultConfig <+> docksEventHook
     -- manageHook         = myManageHook,
-    -- startupHook        = myStartupHook
+    startupHook        = myStartupHook
 }
