@@ -4,7 +4,7 @@
 
 -- This is setup for dual 1920x1080 monitors, with the right monitor as primary
 Config {
-    position = TopW C 80,
+    position = TopW C 1080,
     -- position = Static { xpos = 0 , ypos = 0, width = 1806, height = 16 },
     border = BottomB,
     borderColor = "grey",

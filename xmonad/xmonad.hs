@@ -37,7 +37,7 @@ myTerminal = "alacritty"
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
-myWorkspaces = ["1:term","2:web","3:im","4:mail","5:media"] ++ map show [6..9]
+myWorkspaces = ["1:term","2:social","3:web","4:others","5:media", "6:chat"] ++ map show [7..9]
 
 
 ------------------------------------------------------------------------
@@ -55,19 +55,8 @@ myWorkspaces = ["1:term","2:web","3:im","4:mail","5:media"] ++ map show [6..9]
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "Chromium"       --> doShift "2:web"
-    , className =? "Google-chrome"  --> doShift "2:web"
-    , className =? "skype"          --> doShift "3:im"
-    , className =? "pidgin"  	    --> doShift "3:im"
-    , className =? "Icedove"        --> doShift "3:mail"
-    , resource  =? "desktop_window" --> doIgnore
-    , className =? "Galculator"     --> doFloat
-    , className =? "Steam"          --> doFloat
-    , className =? "Gimp"           --> doFloat
-    , resource  =? "gpicview"       --> doFloat
-    , className =? "MPlayer"        --> doFloat
-    , className =? "Xchat"          --> doShift "3:im"
-    , className =? "stalonetray"    --> doIgnore
+    [ resource  =? "Navigator"        --> doShift "2:web"
+    , className =? "TelegramDesktop" --> doShift "6:chat"
     , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
 
 
@@ -188,12 +177,12 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- After pressing this key binding, click a window, or draw a rectangle with
   -- the mouse.
   , ((modMask .|. shiftMask, xK_p),
-     spawn "select-screenshot")
+     spawn "flameshot gui")
 
   -- Take full screenshot in multi-head mode.
   -- That is, take a screenshot of everything you see.
   , ((modMask .|. controlMask .|. shiftMask, xK_p),
-     spawn "screenshot")
+     spawn "flameshot full")
 
   -- Fetch a single use password.
   , ((modMask .|. shiftMask, xK_o),
@@ -285,8 +274,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      sendMessage Shrink)
 
   -- Shrink the master area.
- -- , ((modMask .|. shiftMask, xK_Right),
- --    sendMessage Shrink)
+  , ((modMask .|. shiftMask, xK_Right),
+     sendMessage Shrink)
 
 
 
@@ -310,8 +299,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- TODO: update this binding with avoidStruts, ((modMask, xK_b),
 
   -- Quit xmonad.
-  , ((modMask .|. shiftMask, xK_q),
-     io (exitWith ExitSuccess))
+  -- , ((modMask .|. shiftMask, xK_q),
+  --   io (exitWith ExitSuccess))
 
   -- Restart xmonad.
   , ((modMask, xK_q),
@@ -429,7 +418,7 @@ defaults = defaultConfig {
     -- hooks, layouts
     layoutHook         = smartBorders $ myLayout,
     -- thanks https://unix.stackexchange.com/questions/288037/xmobar-does-not-appear-on-top-of-window-stack-when-xmonad-starts
-    handleEventHook    = handleEventHook defaultConfig <+> docksEventHook
+    handleEventHook    = handleEventHook defaultConfig <+> docksEventHook,
     -- manageHook         = myManageHook,
     startupHook        = myStartupHook
 }
