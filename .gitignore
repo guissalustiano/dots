@@ -25,6 +25,11 @@ vlc/
 xournalpp/
 yarn/
 mimeapps.list
+gh/
+neofetch/
+ranger/
+thefuck/
+spotify-tui/
 
 **/__pycache__
 gh/hosts.yml
