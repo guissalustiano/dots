@@ -1,5 +1,5 @@
 # Meu Arch
- Info in [wiki](wiki/Text-Editor)
+ Info in [wiki](../wiki)
 
 # Referencias:
  - https://github.com/davidfstein/dots
