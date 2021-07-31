@@ -1,9 +1,29 @@
-yarn/
-gh/hosts.yml
-pulse/
-user-dirs.*
+Bitwarden CLI/
+Code - OSS/
+FortiClient/
+GIMP/
+JetBrains/
 QtProject.conf
+Soundux/
+autorandr/
+configstore/
 dconf/
+deluge/
 discord/
+google-chrome/
+gtk-2.0/
 jgit/
+nextjs-nodejs/
+nomacs/
+obs-studio/
+pulse/
+systemd/
+user-dirs.*
+vlc/
+xournalpp/
+yarn/
 mimeapps.list
+
+**/__pycache__
+gh/hosts.yml
+spotify-tui/.spotify_token_cache.json

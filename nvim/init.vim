@@ -9,7 +9,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'rust-lang/rust.vim'
 
   " Debugger
-  Plug 'puremourning/vimspector'
+  " Plug 'puremourning/vimspector'
 
   " Formatter/Prettier
   " Plug 'sbdchd/neoformat'
@@ -34,8 +34,6 @@ call plug#begin('~/.vim/plugged')
 
   " Utils
     " (Ctrl+Z)³
-    Plug 'mbbill/undotree'
-  Plug 'vim-utils/vim-man'
   Plug 'junegunn/vim-easy-align'
   Plug 'kristijanhusak/vim-carbon-now-sh'
 

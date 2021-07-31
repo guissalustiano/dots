@@ -1,3 +1,5 @@
+alias youtubedl="youtube-dl -f best ou -f bestvideo+bestaudio"
+
 alias vi='nvim'
 alias svi='sudo nvim'
 

@@ -24,17 +24,6 @@ lspconfig.util.default_config = vim.tbl_extend(
   { on_attach=attach }
 )
 
--- Na proxima versão vai vir incluso
-if not lspconfig.tflint then
-  configs.tflint = {
-    default_config = {
-      cmd = {"tflint", "--langserver"},
-      filetypes = {"terraform"},
-      root_dir = util.root_pattern(".terraform", ".git", ".tflint.hcl")
-    },
-  }
-end
-
 if not lspconfig.ghdl then
   configs.ghdl = {
     default_config = {
