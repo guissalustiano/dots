@@ -11,6 +11,7 @@ configstore/
 dconf/
 deluge/
 discord/
+flameshot/
 google-chrome/
 gtk-2.0/
 jgit/
