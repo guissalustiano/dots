@@ -1,5 +1,7 @@
-" please
+let mapleader = " "
+nnoremap <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 
+" please
 inoremap <Up>     <C-o>:echom "--> k <-- "<CR>
 inoremap <Down>   <C-o>:echom "--> j <-- "<CR>
 inoremap <Right>  <C-o>:echom "--> l <-- "<CR>
