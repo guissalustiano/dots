@@ -46,3 +46,7 @@ set shortmess+=c
 
 set colorcolumn=80
 " highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+let g:netrw_browse_split=2 " remove extra informations
+let g:netrw_banner=0
+let g:netrw_winsize=25
