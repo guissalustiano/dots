@@ -35,7 +35,7 @@ return require('packer').startup(function()
 
   -- Utils
   use 'andymass/vim-matchup'
-  use '9mm/vim-closer'
+  -- use '9mm/vim-closer'
   use 'junegunn/vim-easy-align'
   use 'kristijanhusak/vim-carbon-now-sh'
 
