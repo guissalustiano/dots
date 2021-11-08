@@ -10,6 +10,4 @@ zinit light zsh-users/zsh-completions
 autoload compinit
 compinit
 
-zinit light zdharma/fast-syntax-highlighting
-
 zinit light zsh-users/zsh-autosuggestions

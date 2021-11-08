@@ -13,4 +13,3 @@ alias ps="procs"
 # alias baterry="upower -d"
 
 # alias t="trans"
-eval $(thefuck --alias)
