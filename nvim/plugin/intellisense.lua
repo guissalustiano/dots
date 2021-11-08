@@ -92,5 +92,3 @@ cmp.setup {
 }
 
 
--- show code actions (https://github.com/neovim/nvim-lspconfig/wiki/Code-Actions)
-autocmd CursorHold,CursorHoldI * lua require('code_action_utils').code_action_listener()
