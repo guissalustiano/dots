@@ -305,13 +305,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Restart xmonad.
   , ((modMask, xK_q),
      restart "xmonad" True)
-
-  , ((modMask , xK_Scroll_Lock ),
-    spawn "setxkbmap -layout us ; xmodmap ~/.Xmodmap")
-
-  , ((modMask .|. shiftMask, xK_Scroll_Lock),
-    spawn "setxkbmap -layout gr ; xmodmap ~/.Xmodmap")
-
   ]
   ++
 
