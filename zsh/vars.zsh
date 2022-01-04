@@ -10,3 +10,4 @@ export PATH=$HOME/.pub-cache/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.stack/global-project/stack.yaml:$PATH
 export PATH=$HOME/.dotnet/tools:$PATH
+export PATH=$HOME/.ghcup/bin:$PATH

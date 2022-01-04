@@ -34,3 +34,10 @@ spotify-tui/
 **/__pycache__
 gh/hosts.yml
 spotify-tui/.spotify_token_cache.json
+chromium/
+xmonad/.xmonad
+xmonad/prompt-history
+xmonad/xmonad-x86_64-linux
+xmonad/xmonad.errors
+xmonad/xmonad.hi
+xmonad/xmonad.o
