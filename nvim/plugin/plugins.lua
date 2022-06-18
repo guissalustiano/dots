@@ -35,9 +35,11 @@ require('packer').startup(function()
   use 'andymass/vim-matchup'
   use 'junegunn/vim-easy-align'
   use 'kristijanhusak/vim-carbon-now-sh'
+  use 'nicwest/vim-camelsnek'
 
   -- Aesthetics
-  use 'lukas-reineke/indent-blankline.nvim' -- Ident markers
+  use 'sheerun/vim-polyglot'
+  -- use 'lukas-reineke/indent-blankline.nvim' -- Ident markers
   use 'chrisbra/Colorizer' -- Color hexcode
   use 'ayu-theme/ayu-vim'
   use {'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true} }
