@@ -50,6 +50,3 @@ set colorcolumn=80
 let g:netrw_browse_split=2 " remove extra informations
 let g:netrw_banner=0
 let g:netrw_winsize=25
-
-let ayucolor="dark"   " for dark version of theme
-colorscheme ayu

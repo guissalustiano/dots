@@ -1,5 +1,4 @@
 let mapleader = " "
-nnoremap <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 
 " please
 inoremap <Up>     <C-o>:echom "--> k <-- "<CR>
@@ -49,34 +48,16 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
 "Terminal
-if has('nvim')
-    " Make esc leave terminal mode
-    tnoremap <leader><Esc> <C-\><C-n>
-    tnoremap <Esc><Esc> <C-\><C-n>
+" Make esc leave terminal mode
+tnoremap <leader><Esc> <C-\><C-n>
+tnoremap <Esc><Esc> <C-\><C-n>
 
-    " Easy moving between the buffers
-    tnoremap <leader>h <C-\><C-n><C-w>h
-    tnoremap <leader>j <C-\><C-n><C-w>j
-    tnoremap <leader>k <C-\><C-n><C-w>k
-    tnoremap <leader>l <C-\><C-n><C-w>l
+" Easy moving between the buffers
+tnoremap <leader>h <C-\><C-n><C-w>h
+tnoremap <leader>j <C-\><C-n><C-w>j
+tnoremap <leader>k <C-\><C-n><C-w>k
+tnoremap <leader>l <C-\><C-n><C-w>l
 
-    " Try and make sure to not mangle space items
-    tnoremap <S-Space> <Space>
-    tnoremap <C-Space> <Space>
-endif
-" --------
-" Plugins
-" --------
-
-" Undotree
-nnoremap <leader>u :UndotreeToggle<CR>
-
-" EasyAlign
-xmap <leader>a <Plug>(EasyAlign)
-nmap <leader>a <Plug>(EasyAlign)
-
-" Carbon.sh
-vnoremap <leader><F5> :CarbonNowSh<CR>
-
-" Formater
-nnoremap <leader><f> :Format<CR>
+" Try and make sure to not mangle space items
+tnoremap <S-Space> <Space>
+tnoremap <C-Space> <Space>
