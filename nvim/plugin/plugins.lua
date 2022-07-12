@@ -29,16 +29,19 @@ require('packer').startup(function()
   }
 
   use 'norcalli/nvim-colorizer.lua'
-  use "rafamadriz/neon"
+  use 'Shatur/neovim-ayu'
   use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
 end)
 
 -- Theme
-vim.g.neon_style = "dark"
-vim.cmd[[colorscheme neon]]
+require('ayu').setup({
+    mirage = false, -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
+    overrides = {}, -- A dictionary of group names, each associated with a dictionary of parameters (`bg`, `fg`, `sp` and `style`) and colors in hex.
+})
+require('ayu').colorscheme()
 require('lualine').setup{
   options = {
-    theme = 'neon'
+    theme = 'ayu'
   }
 }
 
