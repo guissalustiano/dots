@@ -155,7 +155,6 @@ myModMask = mod4Mask
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 
-
   ----------------------------------------------------------------------
   -- Custom key bindings
   --
