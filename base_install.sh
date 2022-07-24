@@ -31,6 +31,9 @@ paru -S nerd-fonts-fira-code \
   ttf-dejavu \
   ttf-ms-fonts
 
+# Fix Keycron
+paru -S hid-apple-patched-git-dkms
+
 # windows manager
 paru -S stack-static
 
