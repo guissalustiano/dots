@@ -29,19 +29,16 @@ require('packer').startup(function()
   }
 
   use 'norcalli/nvim-colorizer.lua'
-  use 'Shatur/neovim-ayu'
+  use 'folke/tokyonight.nvim'
   use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
 end)
 
 -- Theme
-require('ayu').setup({
-    mirage = false, -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
-    overrides = {}, -- A dictionary of group names, each associated with a dictionary of parameters (`bg`, `fg`, `sp` and `style`) and colors in hex.
-})
-require('ayu').colorscheme()
+vim.g.tokyonight_style = "night"
+vim.cmd[[colorscheme tokyonight]]
 require('lualine').setup{
   options = {
-    theme = 'ayu'
+    theme = 'tokyonight'
   }
 }
 
