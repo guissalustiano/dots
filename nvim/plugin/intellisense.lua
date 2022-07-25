@@ -48,6 +48,12 @@ require('lspconfig')['rust_analyzer'].setup {
     capabilities = capabilities
 }
 
+require('lspconfig')['hls'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities
+}
+
 -- Setup nvim-cmp.
 vim.cmd[[set completeopt=menu,menuone,noselect]]
 local cmp = require'cmp'
