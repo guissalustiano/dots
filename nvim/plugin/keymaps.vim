@@ -1,5 +1,3 @@
-let mapleader = " "
-
 " please
 inoremap <Up>     <C-o>:echom "--> k <-- "<CR>
 inoremap <Down>   <C-o>:echom "--> j <-- "<CR>
