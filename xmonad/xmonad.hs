@@ -9,6 +9,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Util.Loggers
+import XMonad.Prompt.RunOrRaise
 
 main :: IO ()
 main = xmonad 
@@ -57,6 +58,7 @@ myConfig = def
         , ("M-<F10>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
         , ("M-<F1>", spawn "light -A 10")
         , ("M-<F2>", spawn "light -U 10")
+        , ("M-p", runOrRaisePrompt def)
         ]
 
 myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
