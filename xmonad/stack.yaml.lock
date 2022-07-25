@@ -11,6 +11,13 @@ packages:
       sha256: b0cd22d02719a0b53da816a292eb599b9a5ab28fd4b71509332e2840e4f75277
   original:
     hackage: X11-1.10.2
+- completed:
+    hackage: iwlib-0.1.2@sha256:4df33cfbfdb540468a0d5eb228bfa4a729bef0c5c97ddacbea83862c4da7f2d7,933
+    pantry-tree:
+      size: 259
+      sha256: 38f21f9f14c5c518c7055f61062b8261a4954f254358447f2843800928ec49f9
+  original:
+    hackage: iwlib-0.1.2
 snapshots:
 - completed:
     size: 567037

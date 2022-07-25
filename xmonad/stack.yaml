@@ -32,15 +32,26 @@ resolver:
 packages:
 - xmonad
 - xmonad-contrib
+- xmobar
 # Dependency packages to be pulled from upstream that are not in the resolver.
 # These entries can reference officially published versions as well as
 # forks / in-progress versions pinned to a git hash. For example:
 #
 extra-deps:
 - X11-1.10.2
+- iwlib-0.1.2
 
 # Override default flag values for local packages and extra-deps
-# flags: {}
+flags:
+  xmobar:
+    with_dbus: true
+    with_threaded: true
+    with_xft: true
+    with_mpd: true
+    with_mpris: true
+    with_inotify: true
+    with_iwlib: true
+    with_xpm: true
 
 # Extra package databases containing global packages
 # extra-package-dbs: []
