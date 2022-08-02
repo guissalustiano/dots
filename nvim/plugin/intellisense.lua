@@ -48,7 +48,19 @@ require('lspconfig')['rust_analyzer'].setup {
     capabilities = capabilities
 }
 
+require('lspconfig')['terraform_lsp'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities
+}
+
 require('lspconfig')['hls'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities
+}
+
+require('lspconfig')['tsserver'].setup {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities
