@@ -1,0 +1,11 @@
+[Security]
+EAP-Method=PEAP
+EAP-Identity=anonymous@usp.br
+EAP-PEAP-CACert=/usr/share/ca-certificates/eduroam_usp.pem
+EAP-PEAP-ServerDomainMask=*.usp.br
+EAP-PEAP-Phase2-Method=MSCHAPV2
+EAP-PEAP-Phase2-Identity=11806750@usp.br
+EAP-PEAP-Phase2-Password=Rg2$2D*AZEB*T6^x8@bRNS#i7%3@jQNf
+
+[Settings]
+AutoConnect=true

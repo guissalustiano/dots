@@ -14,6 +14,9 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+  -- lsp-format
+  -- require("lsp-format").on_attach(client)
+
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -42,11 +45,15 @@ local lsp_flags = {
 }
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require('lspconfig')['rust_analyzer'].setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities
-}
+local lsps = {'rust_analyzer', 'gopls', 'clangd', 'tflint'}
+for i, server in pairs(lsps) do
+  require('lspconfig')[server].setup {
+      on_attach = on_attach,
+      flags = lsp_flags,
+      capabilities = capabilities
+  }
+end
+
 
 require('lspconfig')['terraform_lsp'].setup {
     on_attach = on_attach,
@@ -60,11 +67,30 @@ require('lspconfig')['hls'].setup {
     capabilities = capabilities
 }
 
+require('lspconfig')['kotlin_language_server'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities
+}
+
 require('lspconfig')['tsserver'].setup {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities
 }
+
+require('lspconfig')['julials'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities
+}
+
+require('lspconfig')['pyright'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities
+}
+
 
 -- Setup nvim-cmp.
 vim.cmd[[set completeopt=menu,menuone,noselect]]
@@ -112,3 +138,22 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
+
+require'nvim-treesitter.configs'.setup {
+  autotag = {
+    enable = true,
+  },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  }
+}

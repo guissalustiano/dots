@@ -21,6 +21,7 @@ require('packer').startup(function()
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+  -- use "lukas-reineke/lsp-format.nvim"
 
   use {
     'lewis6991/gitsigns.nvim',
@@ -28,6 +29,7 @@ require('packer').startup(function()
       require('gitsigns').setup()
     end
   }
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
   use 'norcalli/nvim-colorizer.lua'
   use 'folke/tokyonight.nvim'

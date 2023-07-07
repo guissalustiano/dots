@@ -52,7 +52,7 @@ myConfig = def
         , layoutHook = myLayout
         }
         `additionalKeysP`
-        [ ("M-S-p", spawn "flameshot gui")
+        [ ("M-S-p", spawn "maim -s | xclip -selection clipboard -t image/png")
         , ("M-<F12>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
         , ("M-<F11>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
         , ("M-<F10>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")

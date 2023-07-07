@@ -25,6 +25,9 @@ nnoremap <leader>w <C-^>
 " Run the last command
 nnoremap <leader>U :<up>
 
+" snake_case to CamelCase
+nnoremap <leader>sc :s#_\(\l\)#\u\1#g<CR>
+
 " Remove whitespace
 nnoremap <leader>sws :%s/\s\+$//<CR>
 
@@ -35,6 +38,9 @@ inoremap <C-j> :m .+1<CR>==
 inoremap <C-k> :m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
+
+" File Explorer
+nnoremap <Leader>e <cmd>Ex<CR>
 
 " Windows
 nnoremap <Leader>= :wincmd =<CR>
