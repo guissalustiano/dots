@@ -108,49 +108,49 @@ window:
   #multiplier: 3
 
 # Font configuration
-font:
+# font:
   # Normal (roman) font face
-  normal:
+  # normal:
     # Font family
     #
     # Default:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: 'FiraCode Nerd Font Mono'
+    # family: 'FiraCode Nerd Font Mono'
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
   # Bold font face
-  bold:
+  # bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: 'FiraCode Nerd Font Mono'
+    # family: 'FiraCode Nerd Font Mono'
 
     # The `style` can be specified to pick a specific face.
     #style: Bold
 
   # Italic font face
-  italic:
+  # italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: 'FiraCode Nerd Font Mono'
+    # family: 'FiraCode Nerd Font Mono'
 
     # The `style` can be specified to pick a specific face.
     #style: Retina
 
   # Bold italic font face
-  bold_italic:
+  # bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: 'FiraCode Nerd Font Mono'
+    # family: 'FiraCode Nerd Font Mono'
 
     # The `style` can be specified to pick a specific face.
     #style: Bold Italic
@@ -435,10 +435,13 @@ colors:
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-#shell:
-#  program: /bin/bash
-#  args:
-#    - --login
+shell:
+  program: zellij
+  args:
+    - options
+    - --default-shell
+    - nu
+
 
 # Startup directory
 #
