@@ -116,6 +116,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim
+    gcc
 
     linuxKernel.packages.linux_latest_libre.perf
     (python311.withPackages(ps: with ps; [ 
