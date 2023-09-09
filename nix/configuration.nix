@@ -7,6 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      <home-manager/nixos>
       ./hardware-configuration.nix
     ];
 
@@ -86,39 +87,11 @@
     isNormalUser = true;
     description = "guiss";
     extraGroups = [ "networkmanager" "wheel" "dialout" "docker"];
-    packages = with pkgs; [
-      xclip
-      htop
-      git
-      zip
-      unzip
+  };
 
-      nushell
-      alacritty
-      zellij
-      starship
-      zoxide
-      fzf
-      ripgrep
-      bat
-      tio
-
-      rustup
-      wasm-pack
-      gcc
-      openssl
-
-      elixir
-      inotify-tools
-
-      spotify
-      firefox
-      steam
-      obsidian
-      
-      # For nvim copilot
-      nodejs
-      ];
+  home-manager.users.guiss = { pkgs, ... }: {
+    home.stateVersion = "23.05";
+    programs.bash.enable = true;
   };
 
   # Enable automatic login for the user.
@@ -130,25 +103,20 @@
 
 
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
+    steam
     neovim
     docker-compose
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
   };
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -159,7 +127,6 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
-
 
   # Docker config
   virtualisation = {
