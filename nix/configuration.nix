@@ -82,6 +82,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = (pkg: true);
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.guiss = {
     isNormalUser = true;
@@ -89,18 +93,96 @@
     extraGroups = [ "networkmanager" "wheel" "dialout" "docker"];
   };
 
-  home-manager.users.guiss = { pkgs, ... }: {
-    home.stateVersion = "23.05";
-    programs.bash.enable = true;
-  };
-
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "guiss";
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # Home manger config
+  home-manager.users.guiss = { pkgs, ... }: {
+    home.stateVersion = "23.05";
 
+    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfreePredicate = (pkg: true);
+
+    home.packages = with pkgs; [
+      zsh
+      niv
+      direnv
+      git
+  
+      htop
+      zip
+      unzip
+  
+      xclip
+  
+      alacritty
+      zellij
+      starship
+      zoxide
+      fzf
+      ripgrep
+      bat
+      tio
+  
+      # spotify
+      firefox
+      steam
+      # obsidian
+      
+      # For nvim copilot
+      nodejs
+      elixir
+      inotify-tools
+    ];
+
+    programs.bash.enable = true;
+  
+    programs.git = {
+      enable = true;
+      userName = "Guilherme Salustiano";
+      userEmail = "guissalustiano@gmail.com";
+    };
+  
+    programs.zsh = {
+      enable = true;
+      enableCompletion = true;
+      shellAliases = {
+        ll = "ls -l";
+        update = "sudo nixos-rebuild switch && home-manager switch";
+      };
+  
+      plugins = [
+        {
+          name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = pkgs.fetchFromGitHub {
+            owner = "chisui";
+            repo = "zsh-nix-shell";
+            rev = "v0.7.0";
+            sha256 = "149zh2rm59blr2q458a5irkfh82y3dwdich60s9670kl3cl5h2m1";
+          };
+        }
+      ];
+  
+      zplug = {
+        enable = true;
+        plugins = [
+          { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
+        ];
+      };
+  
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "docker"];
+        theme = "robbyrussell";
+      };
+  
+      initExtra = ''
+        eval "$(starship init zsh)"
+      '';
+    };
+  };
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
