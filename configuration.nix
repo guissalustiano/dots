@@ -85,12 +85,13 @@
   users.users.guiss = {
     isNormalUser = true;
     description = "guiss";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "dialout" "docker"];
     packages = with pkgs; [
-      spotify
-      firefox
+      xclip
       htop
       git
+      zip
+      unzip
 
       nushell
       alacritty
@@ -100,9 +101,24 @@
       fzf
       ripgrep
       bat
-      # exa
+      tio
 
-    ];
+      rustup
+      wasm-pack
+      gcc
+      openssl
+
+      elixir
+      inotify-tools
+
+      spotify
+      firefox
+      steam
+      obsidian
+      
+      # For nvim copilot
+      nodejs
+      ];
   };
 
   # Enable automatic login for the user.
@@ -112,18 +128,12 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim
-    gcc
-
-    linuxKernel.packages.linux_latest_libre.perf
-    (python311.withPackages(ps: with ps; [ 
-      loguru
-       matplotlib
-       pandas
-    ]))
+    docker-compose
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -139,7 +149,28 @@
     viAlias = true;
     vimAlias = true;
   };
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
   environment.variables.EDITOR = "nvim";
+
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [ zsh ];
+
+
+  # Docker config
+  virtualisation = {
+    docker = {
+      enable = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+    };
+  };
 
   # List services that you want to enable:
 
@@ -159,14 +190,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
-  # Docker config
-  #virtualisation.docker = {
-  #  enable = true;
-  #  rootless = {
-  #    enable = true;
-  #    setSocketVariable = true;
-  #  };
-  #};
-
 }
