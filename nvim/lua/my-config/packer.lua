@@ -46,8 +46,8 @@ return require('packer').startup(function(use)
 	  requires = {
 		  -- LSP Support
 		  {'neovim/nvim-lspconfig'},
-		  {'williamboman/mason.nvim'},
-		  {'williamboman/mason-lspconfig.nvim'},
+		  -- {'williamboman/mason.nvim'},
+		  -- {'williamboman/mason-lspconfig.nvim'},
 
 		  -- Autocompletion
 		  {'hrsh7th/nvim-cmp'},
@@ -60,6 +60,14 @@ return require('packer').startup(function(use)
 		  -- Snippets
 		  {'L3MON4D3/LuaSnip'},
 		  {'rafamadriz/friendly-snippets'},
+
+          -- Rust
+          {'neovim/nvim-lspconfig'},
+          {'simrat39/rust-tools.nvim'},
+
+          -- Debugging
+          {'nvim-lua/plenary.nvim'},
+          {'mfussenegger/nvim-dap'},
 	  }
   }
 
