@@ -50,6 +50,8 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
+  # services.xserver.displayManager.defaultSession = "plasmawayland";
+
   # Configure keymap in X11
   services.xserver = {
     layout = "br";
@@ -86,6 +88,10 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (pkg: true);
 
+  # License for segger jlink
+  nixpkgs.config.segger-jlink.acceptLicense = true;
+
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.guiss = {
     isNormalUser = true;
@@ -96,6 +102,7 @@
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "guiss";
+
 
   # Home manger config
   home-manager.users.guiss = { pkgs, ... }: {
@@ -124,19 +131,28 @@
       ripgrep
       bat
       tio
+      tealdeer
   
-      # spotify
+      spotify
       firefox
-      steam
-      # obsidian
+      obsidian
       
-      # For nvim copilot
-      nodejs
-      elixir
+      dbeaver
+
+      vscode
+      elixir_1_15
+      erlang
+      elixir-ls
       inotify-tools
+      lua-language-server
+      gcc
+      gnumake
+      nodejs # For nvim copilot
+
+      archi
     ];
 
-    programs.bash.enable = true;
+    programs.bash.enable = false;
   
     programs.git = {
       enable = true;
@@ -148,38 +164,27 @@
       enable = true;
       enableCompletion = true;
       shellAliases = {
+        nxs = "nix-shell";
         ll = "ls -l";
-        update = "sudo nixos-rebuild switch && home-manager switch";
+        update = "sudo nixos-rebuild switch";
+        upgrade = "sudo nixos-rebuild switch --upgrade";
+        docker-runb = "docker run --rm -it $(docker build -q .)"
       };
-  
-      plugins = [
-        {
-          name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "v0.7.0";
-            sha256 = "149zh2rm59blr2q458a5irkfh82y3dwdich60s9670kl3cl5h2m1";
-          };
-        }
-      ];
   
       zplug = {
         enable = true;
         plugins = [
           { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
+          { name = "plugins/git"; tags = ["from:oh-my-zsh"]; }
+          { name = "plugins/docker"; tags = ["from:oh-my-zsh"]; }
+          { name = "chisui/zsh-nix-shell"; tags = ["at:v2.4.2"]; }
         ];
-      };
-  
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "git" "docker"];
-        theme = "robbyrussell";
       };
   
       initExtra = ''
         eval "$(starship init zsh)"
+        eval "$(zoxide init zsh)"
+        . "$HOME/.asdf/asdf.sh"
       '';
     };
   };
@@ -239,4 +244,18 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
+
+    services.udev.extraRules = ''
+    # 71-nrf.rules
+    ACTION!="add", SUBSYSTEM!="usb_device", GOTO="nrf_rules_end"
+
+    # Set /dev/bus/usb/*/* as read-write for all users (0666) for Nordic Semiconductor devices
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="1915", MODE="0666"
+
+    # Flag USB CDC ACM devices, handled later in 99-mm-nrf-blacklist.rules
+    # Set USB CDC ACM devnodes as read-write for all users
+    KERNEL=="ttyACM[0-9]*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1915", MODE="0666", ENV{NRF_CDC_ACM}="1"
+
+    LABEL="nrf_rules_end"
+    '';
 }

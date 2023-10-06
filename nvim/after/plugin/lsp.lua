@@ -57,11 +57,13 @@ lsp.setup_servers({
   'rust_analyzer',
   'jedi_language_server',
   'elixirls',
+  'jdtls',
 })
 
 lsp.skip_server_setup({
     'rust_analyzer',
     'elixirls',
+    'jdtls',
 })
 
 lsp.setup()
@@ -80,3 +82,10 @@ local elixirls = lsp.build_options('elixirls', {
     cmd = { "elixir-ls" };
 })
 lspconfig.elixirls.setup(elixirls)
+
+local jdtls = lsp.build_options('jdtls', {
+    cmd = { "jdt-language-server" };
+})
+lspconfig.jdtls.setup(jdtls)
+
+
