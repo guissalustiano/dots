@@ -12,7 +12,7 @@ return require('packer').startup(function(use)
 
   use({'folke/tokyonight.nvim',
     config = function()
-        vim.cmd('colorscheme tokyonight-night')
+        vim.cmd[[colorscheme tokyonight]]
     end
   })
 
@@ -46,8 +46,8 @@ return require('packer').startup(function(use)
 	  requires = {
 		  -- LSP Support
 		  {'neovim/nvim-lspconfig'},
-		  -- {'williamboman/mason.nvim'},
-		  -- {'williamboman/mason-lspconfig.nvim'},
+		  {'williamboman/mason.nvim'},
+		  {'williamboman/mason-lspconfig.nvim'},
 
 		  -- Autocompletion
 		  {'hrsh7th/nvim-cmp'},

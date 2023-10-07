@@ -2,7 +2,6 @@ vim.diagnostic.config({
     virtual_text = true
 })
 
-local lspconfig = require('lspconfig')
 local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
@@ -52,40 +51,5 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
--- mason.nvim isn't installed, it not work well on NixOS
-lsp.setup_servers({
-  'rust_analyzer',
-  'jedi_language_server',
-  'elixirls',
-  'jdtls',
-})
-
-lsp.skip_server_setup({
-    'rust_analyzer',
-    'elixirls',
-    'jdtls',
-})
 
 lsp.setup()
-
-local rust_tools = require('rust-tools')
-
-rust_tools.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      vim.keymap.set('n', '<leader>ca', rust_tools.hover_actions.hover_actions, {buffer = bufnr})
-    end
-  }
-})
-
-local elixirls = lsp.build_options('elixirls', {
-    cmd = { "elixir-ls" };
-})
-lspconfig.elixirls.setup(elixirls)
-
-local jdtls = lsp.build_options('jdtls', {
-    cmd = { "jdt-language-server" };
-})
-lspconfig.jdtls.setup(jdtls)
-
-
