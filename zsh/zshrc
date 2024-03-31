@@ -5,7 +5,7 @@ HISTFILE=~/.zsh_history
 
 # Aliases
 alias vi=nvim
-alias cd=z
+#alias cd=z
 alias ls=eza
 alias ll='eza -l'
 alias la='eza -la'
@@ -35,6 +35,7 @@ zplug load
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
+eval "$(atuin init zsh)"
 
 export ANDROID_SDK_ROOT='/opt/android-sdk'
 
@@ -42,6 +43,7 @@ export ANDROID_SDK_ROOT='/opt/android-sdk'
 PATH="$PATH:$HOME/.cargo/bin" # Rust
 PATH=:"$PATH:$HOME/.local/bin" # Python
 PATH="$PATH:$HOME/gn"
+PATH=$PATH:$HOME/.elan/bin # Lean
 PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/
 PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools/
 PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin/
@@ -51,7 +53,7 @@ PATH=$PATH:$ANDROID_SDK_ROOT/tools/
 export PATH
 
 export EDITOR=nvim
-export RUST_LOG=debug
+#export RUST_LOG=debug
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -64,3 +66,4 @@ function notify_when_done() {
     paplay sounds/bip.wav
 }
 
+function gi() { curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;}
