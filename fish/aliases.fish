@@ -4,36 +4,40 @@ alias la="eza -la"
 alias tree="eza -tree"
 
 # Editor
-alias hx="helix"
 alias vi="nvim"
+alias hx="helix"
+alias vi="echo use hx guilherme"
 
 abbr -a vitw -- vi ~/dots/hyprland.conf
 
+
 # Git
 abbr -a -- g git
-abbr -a -- gsta 'git status'
 abbr -a -- ga 'git add'
-abbr -a -- gb 'git branch'
-abbr -a -- gbd 'git branch -d'
-abbr -a -- gbr 'git browse'
-abbr -a -- gc 'git commit'
-abbr -a -- gcf 'git config'
-abbr -a -- gclean 'git reset --hard && git clean -dfx'
-abbr -a -- gcm 'git commit -am'
-abbr -a -- gcmp 'git compare'
+abbr -a -- gc 'git commit -v'
+abbr -a -- gc! 'git commit --verbose --amend'
+abbr -a -- gcn! 'git commit --verbose --no-edit --amend'
 abbr -a -- gco 'git checkout'
+abbr -a -- gcb 'git checkout -b'
 abbr -a -- gd 'git diff'
-abbr -a -- gfk 'git fork'
-abbr -a -- glg 'git log --stat --max-count 10'
-abbr -a -- glgg 'git log --graph --max-count 10'
-abbr -a -- glgga 'git log --graph --decorate --all'
-abbr -a -- glo 'git log --oneline --decorate --color'
 abbr -a -- glog 'git log --oneline --decorate --color --graph'
-abbr -a -- gm 'git merge'
 abbr -a -- gp 'git push'
-abbr -a -- gpom 'git pull origin master'
-abbr -a -- gprq 'git pull-request'
+abbr -a -- gpf 'git push --force-with-lease'
+abbr -a -- gpsup 'git push --set-upstream origin $(git branch 2> /dev/null | sed -e \'/^[^*]/d\' -e \'s/* \\(.*\\)/\\1/\')'
 abbr -a -- gl 'git pull'
-abbr -a -- gs 'git status'
+abbr -a -- grs 'git restore'
+abbr -a -- grst 'git restore --staged'
 abbr -a -- gst 'git status'
-abbr -a -- gu 'git pull'
+abbr -a -- gsta 'git stash'
+abbr -a -- grb 'git rebase'
+abbr -a -- grbi 'git rebase -i'
+abbr -a -- grbc 'git rebase --continue'
+
+# Podman
+abbr -a -- ppls 'podman pod ls'
+abbr -a -- pplog 'podman pod logs --color --since 10m'
+abbr -a -- ppstart 'podman pod start'
+abbr -a -- ppstop 'podman pod stop'
+abbr -a -- pcls 'podman container ls'
+abbr -a -- pcx 'podman container exec'
+abbr -a -- pcxit 'podman container exec -it'

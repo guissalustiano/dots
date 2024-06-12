@@ -67,3 +67,5 @@ function notify_when_done() {
 }
 
 function gi() { curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;}
+
+source /home/guiss/.config/broot/launcher/bash/br

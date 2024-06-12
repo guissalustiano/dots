@@ -1,0 +1,2 @@
+[language-server]
+elixir-ls = { command = "/home/guiss/bin/elixir-ls/language_server.sh", config = { elixirLS.dialyzerEnabled = false } }

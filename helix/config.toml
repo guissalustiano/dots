@@ -2,4 +2,3 @@ theme = "tokyonight"
 
 [editor]
 line-number = "relative"
-mouse = false
