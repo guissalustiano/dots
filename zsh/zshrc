@@ -31,24 +31,11 @@ fi
 zplug load
 #
 # Config asdf
-. /opt/asdf-vm/asdf.sh
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
-eval "$(direnv hook zsh)"
-eval "$(atuin init zsh)"
-
-export ANDROID_SDK_ROOT='/opt/android-sdk'
 
 # PATH
 PATH="$PATH:$HOME/.cargo/bin" # Rust
 PATH=:"$PATH:$HOME/.local/bin" # Python
 PATH="$PATH:$HOME/gn"
-PATH=$PATH:$HOME/.elan/bin # Lean
-PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/
-PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools/
-PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin/
-PATH=$PATH:$ANDROID_ROOT/emulator
-PATH=$PATH:$ANDROID_SDK_ROOT/tools/
 
 export PATH
 

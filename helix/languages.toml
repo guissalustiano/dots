@@ -1,2 +1,11 @@
 [language-server]
 elixir-ls = { command = "/home/guiss/bin/elixir-ls/language_server.sh", config = { elixirLS.dialyzerEnabled = false } }
+
+[language-server.typos]
+command = "typos-lsp"
+environment = {"RUST_LOG" = "error"}
+config.diagnosticSeverity = "Warning"
+
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer", "typos"]
