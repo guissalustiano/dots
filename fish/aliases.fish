@@ -6,7 +6,6 @@ alias tree="eza -tree"
 # Editor
 alias vi="nvim"
 alias hx="helix"
-alias vi="echo use hx guilherme"
 
 abbr -a vitw -- vi ~/dots/hyprland.conf
 
@@ -18,7 +17,7 @@ abbr -a -- gc 'git commit -v'
 abbr -a -- gc! 'git commit --verbose --amend'
 abbr -a -- gcn! 'git commit --verbose --no-edit --amend'
 abbr -a -- gco 'git checkout'
-abbr -a -- gcb 'git checkout -b'
+abbr -a -- gcb 'git pull --rebase --autostash && git checkout -b'
 abbr -a -- gd 'git diff'
 abbr -a -- gds 'git diff --staged'
 abbr -a -- glog 'git log --oneline --decorate --color --graph'

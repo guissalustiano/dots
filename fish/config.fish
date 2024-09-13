@@ -19,7 +19,5 @@ fish_add_path $ANDROID_HOME/tools/
 
 starship init fish | source # starship
 zoxide init fish | source # zoxide
-direnv hook fish | source # direnv
-atuin init fish | source # atuin
+#atuin init fish | source # atuin
 kubectl completion fish | source # kubectl
-helm completion fish | source # helm
