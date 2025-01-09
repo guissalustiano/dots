@@ -4,9 +4,7 @@ alias la="eza -la"
 alias tree="eza -tree"
 
 # Editor
-#alias hx="helix"
-
-abbr -a vitw -- vi ~/dots/hyprland.conf
+alias hx="helix"
 
 
 # Git
