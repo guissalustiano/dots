@@ -11,6 +11,7 @@ alias hx="helix"
 abbr -a -- g git
 abbr -a -- ga 'git add -p'
 abbr -a -- gc 'git commit -v'
+abbr -a -- gcf 'git commit --fixup'
 abbr -a -- gc! 'git commit --verbose --amend'
 abbr -a -- gcn! 'git commit --verbose --no-edit --amend'
 abbr -a -- gco 'git checkout'
@@ -34,12 +35,3 @@ abbr -a -- grbmain 'git fetch && git rebase $(git symbolic-ref refs/remotes/orig
 abbr -a -- grbimain 'git rebase -i $(git symbolic-ref refs/remotes/origin/HEAD --short)'
 abbr -a -- gcomain 'git checkout $(git symbolic-ref refs/remotes/origin/HEAD --short)'
 abbr -a -- gb 'git branch'
-
-# Podman
-abbr -a -- ppls 'podman pod ls'
-abbr -a -- pplog 'podman pod logs --color --since 10m'
-abbr -a -- ppstart 'podman pod start'
-abbr -a -- ppstop 'podman pod stop'
-abbr -a -- pcls 'podman container ls'
-abbr -a -- pcx 'podman container exec'
-abbr -a -- pcxit 'podman container exec -it'

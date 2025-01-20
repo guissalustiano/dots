@@ -12,6 +12,7 @@ fish_add_path /opt/google-cloud-cli/bin # gcloud
 fish_add_path ~/dev/flutter/bin
 fish_add_path ~/.local/bin # Python
 fish_add_path ~/bin/google-cloud-sdk/bin
+fish_add_path ~/.pub-cache/bin # Flutter
 
 # Android
 fish_add_path /home/guiss/Android/Sdk/platform-tools/
