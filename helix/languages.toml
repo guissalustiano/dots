@@ -10,7 +10,7 @@ config.diagnosticSeverity = "Warning"
 command = "rust-analyzer"
 
 [language-server.rust-analyzer.config]
-checkOnSave = false
+# checkOnSave = false
 inlayHints.bindingModeHints.enable = false
 inlayHints.closingBraceHints.minLines = 10
 inlayHints.closureReturnTypeHints.enable = "with_block"

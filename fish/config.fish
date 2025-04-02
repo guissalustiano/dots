@@ -23,3 +23,4 @@ starship init fish | source # starship
 zoxide init fish | source # zoxide
 #atuin init fish | source # atuin
 kubectl completion fish | source # kubectl
+devpod-cli completion fish | source
