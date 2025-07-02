@@ -3,10 +3,6 @@ alias ll="eza -l"
 alias la="eza -la"
 alias tree="eza -tree"
 
-# Editor
-alias hx="helix"
-
-
 # Git
 abbr -a -- g git
 abbr -a -- ga 'git add -p'
@@ -28,7 +24,7 @@ abbr -a -- grst 'git restore --staged -p'
 abbr -a -- gst 'git status'
 abbr -a -- gsta 'git stash'
 abbr -a -- grb 'git rebase'
-abbr -a -- grbi 'git rebase -i'
+abbr -a -- grbi 'git rebase --autosquash -i'
 abbr -a -- grbc 'git rebase --continue'
 abbr -a -- grba 'git rebase --abort'
 abbr -a -- grbmain 'git fetch && git rebase $(git symbolic-ref refs/remotes/origin/HEAD --short)'

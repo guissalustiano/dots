@@ -1,2 +1,2 @@
-inherits = "tokyonight"
-"ui.background" = { fg = "tokyonight" }
+inherits = "dracula"
+"ui.background" = {}
