@@ -1,4 +1,4 @@
-alias hx="helix"
+# alias hx="helix"
 alias ls="eza"
 alias ll="eza -l"
 alias la="eza -la"

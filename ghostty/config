@@ -1,0 +1,5 @@
+shell-integration = fish
+shell-integration-features = ssh-terminfo,ssh-env
+command = /opt/homebrew/bin/fish
+
+background-opacity = 0.9
