@@ -54,39 +54,37 @@ in
     };
   };
 
-  programs.fish = {
+  programs.zsh = {
     enable = true;
-    shellInit = ''
-      if test -e /nix/var/nix/profiles/default/etc/profile.d/nix.fish
-        source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
-      end
+    initContent = ''
+      if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix.sh ]; then
+        source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+      fi
     '';
     shellAliases = {
       ls   = "eza";
       ll   = "eza -l";
       la   = "eza -la";
-    };
-    shellAbbrs = {
-      gst     = "git status";
+      gst  = "git status";
     };
   };
 
   programs.starship = {
     enable = true;
-    enableFishIntegration = true;
+    enableZshIntegration = true;
   };
 
   programs.zoxide = {
     enable = true;
-    enableFishIntegration = true;
+    enableZshIntegration = true;
   };
 
   programs.ghostty = lib.mkIf isGui {
     enable = true;
     settings = {
-      shell-integration = "fish";
+      shell-integration = "zsh";
       shell-integration-features = "ssh-terminfo,ssh-env";
-      command = "${pkgs.fish}/bin/fish";
+      command = "${pkgs.zsh}/bin/zsh";
       background-opacity = 0.9;
     };
   };
@@ -94,10 +92,14 @@ in
   programs.zellij = {
     enable = true;
     settings = {
-      default_shell = "${pkgs.fish}/bin/fish";
+      default_shell = "${pkgs.zsh}/bin/zsh";
       default_layout = "compact";
       default_mode = "locked";
     };
+  };
+
+  programs.nushell = {
+    enable = true;
   };
 
   programs.direnv = {
