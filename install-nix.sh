@@ -19,3 +19,7 @@ fi
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
 nix-shell '<home-manager>' -A install
+
+# Download config and apply
+curl -o .config/home-manager/home.nix https://raw.githubusercontent.com/guissalustiano/dots/refs/heads/master/home-manager/home.nix
+home-manager switch
