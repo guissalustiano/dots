@@ -4,6 +4,11 @@ let
   isGui = builtins.pathExists /run/opengl-driver;
 in
 {
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "claude-code"
+    "obsidian"
+  ];
+
   home.username = "salust";
   home.homeDirectory = "/home/salust";
 
@@ -11,6 +16,7 @@ in
 
   home.packages = [
     pkgs.eza
+    pkgs.claude-code
   ] ++ lib.optionals isGui [
     pkgs.obsidian
   ];
@@ -92,6 +98,11 @@ in
       default_layout = "compact";
       default_mode = "locked";
     };
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
   };
 
   # Let Home Manager install and manage itself.
